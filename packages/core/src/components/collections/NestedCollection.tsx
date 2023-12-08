@@ -83,7 +83,8 @@ const TreeNode = ({
   return (
     <>
       {sortedData.map(node => {
-        const leaf = node.children.length <= 1 && !node.children[0]?.isDir && depth > 0;
+        // const leaf = node.children.length <= 1 && !node.children[0]?.isDir && depth > 0;
+        const leaf = node.children.length === 0 && depth > 0;
         if (leaf) {
           return null;
         }
@@ -93,8 +94,8 @@ const TreeNode = ({
         }
         const title = getNodeTitle(node);
 
-        const hasChildren = depth === 0 || node.children.some(c => c.children.some(c => c.isDir));
-
+        // const hasChildren = depth === 0 || node.children.some(c => c.children.some(c => c.isDir));
+        const hasChildren = depth === 0 || node.children.some(c => c.isDir);
         return (
           <Fragment key={node.path}>
             <div
